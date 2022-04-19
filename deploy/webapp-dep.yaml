@@ -15,7 +15,7 @@ spec:
       - name: gitlab-registry-credentials
       containers:
       - name: app
-        image: {{ CI_REGISTRY_IMAGE }}/barebones-{{ CI_COMMIT_REF_NAME }}:latest
+        image: {{ CI_REGISTRY_IMAGE }}/webapp-{{ CI_COMMIT_REF_NAME }}:latest
         ports:
         - containerPort: 80
         livenessProbe:
