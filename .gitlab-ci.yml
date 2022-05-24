@@ -1,10 +1,10 @@
 # Build und Deployment Pipeline
 # Do not change until you know what you are doing !!!
 
-image: "thlmylab/swakkd:1.23"
+image: "thlmylab/swakkd:1.24"
 
 variables:
-  DOMAIN: "to-be-specified.th-luebeck.dev"
+  DOMAIN: "edu.th-luebeck.dev"
   INGRESS: "False"
 
 stages:

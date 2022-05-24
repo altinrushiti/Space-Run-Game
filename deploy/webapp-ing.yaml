@@ -16,29 +16,7 @@ spec:
             name: master-webapp-svc
             port:
               number: 80
-  - host: "staging-{{ HOST }}"
-    http:
-      paths:
-      - path: "/"
-        pathType: Prefix
-        backend:
-          service:
-            name: staging-webapp-svc
-            port:
-              number: 80  
-  - host: "working-{{ HOST }}"
-    http:
-      paths:
-      - path: "/"
-        pathType: Prefix
-        backend:
-          service:
-            name: working-webapp-svc
-            port:
-              number: 80
   tls:
   - secretName: webapp-ing-cert
     hosts: 
     - "{{ HOST }}"
-    - "staging-{{ HOST }}"
-    - "working-{{ HOST }}"
