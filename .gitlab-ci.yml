@@ -1,7 +1,7 @@
 # Build und Deployment Pipeline
 # Do not change until you know what you are doing !!!
 
-image: "thlmylab/swakkd:1.24"
+image: "thlmylab/swakkd:stable"
 
 variables:
   DOMAIN: "edu.th-luebeck.dev"
@@ -17,8 +17,8 @@ stages:
 registry-cred:
   stage: prepare
   script:
-  - kubectl delete secret gitlab-registry-credentials || true
-  - "kubectl create secret docker-registry gitlab-registry-credentials \
+  - kubectl delete secret gitlab-registry-$CI_PROJECT_ID || true
+  - "kubectl create secret docker-registry gitlab-registry-$CI_PROJECT_ID \
               --docker-server=$CI_REGISTRY \
               --docker-username=image-registry \ 
               --docker-password=$CI_REGISTRY_TOKEN"
