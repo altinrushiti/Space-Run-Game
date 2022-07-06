@@ -1,4 +1,4 @@
-FROM dart:2.17-sdk AS build
+FROM dart:stable-sdk AS build
 
 ENV PATH="${PATH}:.pub-cache/bin"
 ADD pubspec.yaml pubspec.yaml
