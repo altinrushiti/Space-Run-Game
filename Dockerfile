@@ -1,11 +1,13 @@
 FROM dart:stable-sdk AS build
 
+WORKDIR /app
+
 ENV PATH="${PATH}:.pub-cache/bin"
+RUN dart pub global activate webdev
 ADD pubspec.yaml pubspec.yaml
+RUN dart pub get
 ADD web/ web/
-RUN dart pub global activate webdev && \
-    dart pub get
 RUN webdev build --output web:build
 
 FROM nginx:alpine
-COPY --from=build /root/build /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
