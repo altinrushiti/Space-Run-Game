@@ -110,6 +110,7 @@ Sie sollten dann (nach kurzer Synchronisation) Ihren Namespace in dem für Sie b
 
 > **Hinweis 2:**
 > Das Port Forwarding können Sie im Terminal mittels `Ctrl-C` beenden. Wenn Sie eines neues Deployment über die Pipeline triggern, müssen Sie anschließend auch das Port-Forwarding beenden, da dieses ansonsten im Nirwana (d.h. dem letzten dann ersetzten und nicht mehr existenten Deployment) endet.
+> Nach dem Öffnen des Repos müssen Sie dann nur `Reopen in Container` oder `Clone in volume` bestätigen und alle Abhängigkeiten und Installationen erfolgen automatisch.
 
 ## 2.2. Gestalten Sie das Schachbrett mit Hilfe von CSS
 
