@@ -4,7 +4,7 @@
 image: "thlmylab/swakkd:stable"
 
 variables:
-  DOMAIN: "edu.th-luebeck.dev"
+  DOMAIN: "edu.k8s.th-luebeck.dev"
   INGRESS: "False"
 
 stages:

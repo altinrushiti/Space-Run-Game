@@ -2,7 +2,7 @@ FROM dart:stable-sdk AS build
 
 WORKDIR /app
 
-ENV PATH="${PATH}:.pub-cache/bin"
+ENV PATH="${PATH}:/root/.pub-cache/bin"
 RUN dart pub global activate webdev
 ADD pubspec.yaml pubspec.yaml
 RUN dart pub get
