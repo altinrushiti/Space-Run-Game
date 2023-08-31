@@ -96,4 +96,4 @@ def delete_user():
 def main():  # put application's code here
     return render_template("index.html")
 
-app.run(debug=True, port=5000)
+app.run(host='0.0.0.0',port=5000)
