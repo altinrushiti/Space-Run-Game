@@ -3,4 +3,3 @@ flask_bcrypt
 flask_login
 flask_sqlalchemy
 flask_cors
-werkzeug
