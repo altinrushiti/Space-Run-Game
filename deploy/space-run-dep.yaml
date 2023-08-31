@@ -24,6 +24,12 @@ spec:
               memory: 300M
           ports:
             - containerPort: 5000
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 30
           volumeMounts:
             - name: sqlite-volume
               mountPath: /app/storage
