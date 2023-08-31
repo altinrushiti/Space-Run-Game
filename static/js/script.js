@@ -193,6 +193,8 @@ class View {
         this.numberOfOpponents = 0;
         this.opponents = [];
         this.scoreDisplay = document.getElementById('highscore');
+        this.highScoreDisplay = document.getElementById('highscore-display');
+        this.userNameDisplay = document.getElementById('username-display');
 
     }
 
@@ -280,11 +282,8 @@ class View {
         }
         this.opponents = [];
         this.numberOfOpponents = 0;
-
         this.field.opponents = [];
-
         this.field.score = 0;
-
         this.scoreDisplay.textContent = 'Score: 0';
     }
 
@@ -341,7 +340,8 @@ class Controller {
         this.gameRunning = false;
         this.scoreSaved = false;
         this.gameLoopRunning = false;
-
+        this.highScore = 0;
+        this.userName = "";
 
     }
 
@@ -350,16 +350,14 @@ class Controller {
         if (this.gameLoopRunning) {
             this.view.update();
             this.field.gameOver();
-            if (this.field.isGameOver && !this.scoreSaved) {
-                await this.updateScore(this.field.score);
-                this.scoreSaved = true;
-                this.view.mode = 'gameover';
-                this.view.switchMode();
-            } else if (!this.field.isGameOver) {
+
+            if (this.field.isGameOver) {
+                await this.endGame();
+            } else {
                 this.field.moveOpponents();
                 this.field.movePlayer();
+                requestAnimationFrame(() => this.gameLoop());
             }
-            requestAnimationFrame(() => this.gameLoop());
         }
     }
 
@@ -379,6 +377,25 @@ class Controller {
                 console.error(responseData.message);
             }
         })
+    }
+
+    async getCurrentUser() {
+        const response = await fetch('/get_current_user', {
+            method: 'GET'
+        });
+        if (response.ok) {
+            return await response.json();
+
+        } else if (response.error) {
+            console.error(response.error);
+        }
+    }
+
+    async getHighscore() {
+        const currentUser = await this.getCurrentUser();
+        this.view.scoreDisplay.textContent = this.field.score;
+        this.view.highScoreDisplay.textContent = currentUser.highScore;
+        this.view.userNameDisplay.textContent = currentUser.username;
     }
 
 
@@ -463,6 +480,25 @@ class Controller {
         });
     }
 
+
+    async endGame() {
+        clearInterval(this.updateInterval);
+        this.gameRunning = false;
+        this.gameLoopRunning = false;
+        this.field.isGameOver = false;
+
+        if (this.field.score > this.highScore) {
+            this.highScore = this.field.score;
+            await this.updateScore(this.field.score);
+            await this.getHighscore();
+        }
+
+        this.view.mode = 'gameover';
+        this.view.switchMode();
+        this.view.resetGame();
+        this.view.scoreDisplay.textContent = `Score: ${this.field.score}`;
+    }
+
     startGame() {
         this.view.playButton.addEventListener('click', async () => {
             if (!this.gameRunning) {
@@ -494,6 +530,10 @@ class Controller {
             this.view.resetGame();
             this.view.mode = 'game';
             this.view.switchMode();
+            this.gameRunning = true;
+            this.gameLoopRunning = true;
+            this.updateInterval = setInterval(() => this.field.updatePlayerLifetime(), 1000);
+            await this.gameLoop();
         });
         this.view.backButton.addEventListener('click', async () => {
             this.view.mode = 'menubar';

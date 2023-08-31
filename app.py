@@ -55,11 +55,10 @@ def regiser_user():
 
 
 @app.route('/update_score', methods=['PUT'])
-@login_required
 def update_score():
     user = current_user
     data = request.json
-    new_score = data.get('score', 0)
+    new_score = data.get('score')
 
     if new_score > user.highScore:
         user.highScore = new_score
@@ -67,6 +66,13 @@ def update_score():
         return jsonify({'message': 'Score updated successfully'}), 200
     else:
         return jsonify({'message': 'Score not updated'}), 200
+
+
+@app.route('/get_current_user', methods=['GET'])
+def get_current_user():
+    user = current_user
+    return jsonify({'username': user.name,
+                    'highScore': user.highScore})
 
 
 @app.route('/login', methods=['POST'])
@@ -96,4 +102,5 @@ def delete_user():
 def main():  # put application's code here
     return render_template("index.html")
 
-app.run(host='0.0.0.0',port=5000)
+
+app.run(host='0.0.0.0', port=5000)

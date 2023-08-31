@@ -52,4 +52,4 @@ shut-down:
     - mo deploy/space-run-dep.yaml | kubectl delete -f - || true
     - mo deploy/space-run-svc.yaml | kubectl delete -f - || true
     - mo deploy/space-run-ing.yaml | kubectl delete -f - || true
-    - kubectl delete -f deploy/space-run-pvc.yaml || true
+    #- kubectl delete -f deploy/space-run-pvc.yaml || true
