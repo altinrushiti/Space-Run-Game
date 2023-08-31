@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 
 app.config['SECRET_KEY'] = 'dein_geheimer_schluessel'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.root_path, 'storage',  'data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.root_path, 'storage', 'data.db')
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 bcrypt = Bcrypt(app)
@@ -29,7 +29,6 @@ with app.app_context():
 @login_manager.user_loader
 def user_loader(user_id):
     return User.query.get(int(user_id))
-
 
 
 @app.route('/logout', methods=['POST'])
@@ -97,6 +96,4 @@ def delete_user():
 def main():  # put application's code here
     return render_template("index.html")
 
-
-if __name__ == '__main__':
-    app.run(debug=True, port=8000)
+app.run(debug=True, port=5000)
