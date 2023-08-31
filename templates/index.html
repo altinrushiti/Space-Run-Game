@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Space Invaders</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+
+<div id="game-wrapper">
+    <h1 class="game-title">Space Run</h1>
+    <div id="main">
+        <div id="gameover-wrapper">
+            <div id="gameover-container">
+                <h2>Game Over</h2>
+                <p id="score-display">Score: 0</p>
+                <p id="highscore-display">Highscore: 0</p>
+                <button id="restart-button">Restart</button>
+                <button id="back-button">Back to Menu</button>
+            </div>
+        </div>
+        <div id="highscore">Score: 0</div>
+        <div id="laser"></div>
+        <div id="opponent"></div>
+        <div id="player"></div>
+    </div>
+</div>
+
+
+<div id="login-wrapper">
+    <div id="login-container">
+        <div><h2 class="login-title">Login</h2></div>
+        <form id="login-form">
+            <div class="username-input">
+                <label for="username">Username</label>
+                <input id="username" type="text" name="username" placeholder="username" required>
+            </div>
+            <div class="password-input">
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" placeholder="password" required>
+            </div>
+            <div class="login-button">
+                <button type="submit">LOGIN</button>
+            </div>
+        </form>
+        <div class="signup">
+            <button type="submit" id="switch-to-register">SIGN UP</button>
+        </div>
+    </div>
+</div>
+
+<div id="menu-bar-wrapper">
+    <div id="menu-bar">
+        <h1 class="menu-title"> Space Run</h1>
+        <button type="submit" id="play-button">Play</button>
+        <button type="submit" id="logout-button">Logout</button>
+        <button type="submit" id="delete-account-button">Delete Account</button>
+    </div>
+</div>
+
+<div id="register-wrapper">
+    <div id="register-container">
+        <div><h2 class="login-title">Sign Up</h2></div>
+        <form id="register-form">
+            <div class="username-input">
+                <label for="register-username">Username</label>
+                <input id="register-username" type="text" name="username" placeholder="username" required>
+            </div>
+            <div class="password-input">
+                <label for="register-password">Password</label>
+                <input id="register-password" type="password" name="password" placeholder="password" required>
+            </div>
+            <div class="password-input">
+                <label for="repeat-password">Repeat Password</label>
+                <input id="repeat-password" type="password" name="repeat-password" placeholder="repeat password"
+                       required>
+            </div>
+            <div class="signup">
+                <button type="submit" id="switch-to-login">SIGN UP</button>
+            </div>
+        </form>
+    </div>
+    <script src="../static/js/script.js"></script>
+</div>
+</body>
+</html>

@@ -1,13 +1,12 @@
-FROM dart:stable-sdk AS build
+FROM python:3.9-slim
 
 WORKDIR /app
+ADD requirements.txt ./
 
-ENV PATH="${PATH}:/root/.pub-cache/bin"
-RUN dart pub global activate webdev
-ADD pubspec.yaml pubspec.yaml
-RUN dart pub get
-ADD web/ web/
-RUN webdev build --output web:build
+RUN pip install -r requirements.txt
 
-FROM nginx:alpine
-COPY --from=build /app/build /usr/share/nginx/html
+CMD python /app/app.py
+
+ADD app.py ./
+ADD templates /app/templates
+ADD static /app/static
