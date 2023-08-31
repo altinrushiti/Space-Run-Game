@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: space-run-deployment
+  labels:
+    app: space-run
+spec:
+  selector:
+    matchLabels:
+      app: space-run
+  template:
+    metadata:
+      labels:
+        app: space-run
+    spec:
+      imagePullSecrets:
+        - name: gitlab-registry-{{ CI_PROJECT_ID }}
+      containers:
+        - name: space-run
+          image: {{ CI_REGISTRY_IMAGE }}/rest-api:latest
+          resources:
+            limits:
+              cpu: 100m
+              memory: 300M
+          ports:
+            - containerPort: 5000
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 30
+          volumeMounts:
+            - name: sqlite-volume
+              mountPath: /app
+      volumes:
+        - name: sqlite-volume
+          persistentVolumeClaim:
+            claimName: sqlite-pvc
