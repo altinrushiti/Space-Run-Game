@@ -1,23 +1,23 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: Space-Run-ingress
+  name: space-run-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"
     acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
   rules:
-    - host: Space-Run-{{ CI_PROJECT_ID }}.edu.k8s.th-luebeck.dev
+    - host: space-run-{{ CI_PROJECT_ID }}.edu.k8s.th-luebeck.dev
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: Space-Run-service
+                name: space-run-service
                 port:
                   number: 80
   tls:
-    - secretName: Space-Run-ingress-cert
+    - secretName: space-run-ingress-cert
       hosts:
-        - Space-Run-{{ CI_PROJECT_ID }}.edu.k8s.th-luebeck.dev
+        - space-run-{{ CI_PROJECT_ID }}.edu.k8s.th-luebeck.dev

@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Space-Run-deployment
+  name: space-run-deployment
   labels:
-    app: Space-Run
+    app: space-run
 spec:
   selector:
     matchLabels:
-      app: Space-Run
+      app: space-run
   template:
     metadata:
       labels:
-        app: Space-Run
+        app: space-run
     spec:
       imagePullSecrets:
         - name: gitlab-registry-{{ CI_PROJECT_ID }}
       containers:
-        - name: Space-Run
+        - name: space-run
           image: { { CI_REGISTRY_IMAGE } }/rest-api:latest
           resources:
             limits:
@@ -32,7 +32,7 @@ spec:
             periodSeconds: 30
           volumeMounts:
             - name: sqlite-volume
-              mountPath: /app/data
+              mountPath: /app
       volumes:
         - name: sqlite-volume
           persistentVolumeClaim:
