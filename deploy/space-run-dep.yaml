@@ -17,7 +17,7 @@ spec:
         - name: gitlab-registry-{{ CI_PROJECT_ID }}
       containers:
         - name: space-run
-          image: { { CI_REGISTRY_IMAGE } }/rest-api:latest
+          image: {{ CI_REGISTRY_IMAGE }}/rest-api:latest
           resources:
             limits:
               cpu: 100m
