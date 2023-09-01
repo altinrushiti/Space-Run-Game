@@ -83,7 +83,7 @@ def login():
     user = User.query.filter_by(name=username).first()
 
     if user and check_password_hash(user.password, password):
-        login_user(user)  # Verwende die Flask-Login-Funktion
+        login_user(user)
         return jsonify({'message': 'Login successful'}), 200
     else:
         return jsonify({'message': 'Login failed'}), 401
@@ -99,7 +99,7 @@ def delete_user():
 
 
 @app.route('/')
-def main():  # put application's code here
+def main():
     return render_template("index.html")
 
 
