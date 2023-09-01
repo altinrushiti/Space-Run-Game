@@ -11,7 +11,8 @@ body {
     font-size: 36px;
     color: white;
     margin-top: 20px;
-    font-family: "Your Chosen Font", sans-serif; /* Füge deine gewünschte Schriftart hinzu */
+    font-family: 'moonhouse', sans-serif;
+
 }
 
 
@@ -34,12 +35,30 @@ body {
 
 #gameover-container h2 {
     color: white;
+    font-family: 'moonhouse', sans-serif;
+}
+
+.footer {
+    color: darkred;
+}
+
+.footer-links {
+    margin-bottom: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: darkred;
+    color:White;
+    text-align: center;
 }
 
 .gameover-title {
     color: white;
     font-size: 36px;
     margin-bottom: 20px;
+    font-family: 'moonhouse', sans-serif;
+
 }
 
 #gameover-buttons {
@@ -110,7 +129,7 @@ body {
 #play-button:hover,
 #logout-button:hover,
 #delete-account-button:hover, #restart-button:hover, #back-button:hover {
-    background-color: gray;
+    background-color: rgb(128, 128, 128);
 }
 
 #login-form, #register-form {
@@ -255,7 +274,7 @@ body {
 
 
 .login-button button:hover, #switch-to-register:hover {
-    background-color: gray;
+    background-color: rgb(128, 128, 128);
 }
 
 footer {

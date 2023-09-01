@@ -49,9 +49,9 @@ def regiser_user():
         user = User(name=username, password=password_hash)
         db.session.add(user)
         db.session.commit()
-        return jsonify({'message': 'hmdl'}), 201
+        return jsonify({'message': 'registerd'}), 201
     else:
-        return jsonify({'message': 'nicht hmdl'}), 400
+        return jsonify({'message': 'registering failed'}), 400
 
 
 @app.route('/update_score', methods=['PUT'])

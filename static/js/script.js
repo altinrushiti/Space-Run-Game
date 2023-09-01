@@ -13,7 +13,6 @@ class Field {
         this.opponents = [];
         this.lastSpawnTime = 0;
         this.score = 0;
-
     }
 
     updatePlayerLifetime() {
@@ -43,7 +42,7 @@ class Field {
                 left: player.x,
                 right: player.x + player.width,
                 top: player.y,
-                bottom: player.y + player.width
+                bottom: player.y
             };
             for (const opponent of this.opponents) {
                 const opponentRect = {
@@ -60,7 +59,6 @@ class Field {
         }
         return false;
     }
-
 
     gameOver() {
         if (this.checkPlayerOpponentCollision(this.player)) {
@@ -123,13 +121,9 @@ class Opponent {
         this.y = -this.field.enemy_width;
         this.initalspeed = 4;
         this.field.opponents.push(this);
-
         this.spawnTime = Date.now();
         this.isSpawned = false;
-        this.spawnTime = Date.now();
         this.speedIncrementedTime = 0;
-
-
     }
 
     respawnOpponent() {
@@ -155,7 +149,7 @@ class Opponent {
 
         if (this.isSpawned) {
             if (currentTime - this.speedIncrementedTime >= 7000) {
-                this.initalspeed += 0.5;
+                this.initalspeed += 0.2;
                 this.speedIncrementedTime = currentTime;
             }
 
@@ -195,7 +189,6 @@ class View {
         this.scoreDisplay = document.getElementById('highscore');
         this.highScoreDisplay = document.getElementById('highscore-display');
         this.userNameDisplay = document.getElementById('username-display');
-
     }
 
 
@@ -265,7 +258,6 @@ class View {
 
 
     setPosition(object, x, y) {
-
         object.style.left = `${x}px`;
         object.style.top = `${y}px`;
 
@@ -338,11 +330,8 @@ class Controller {
         this.deleteUser();
         this.logout();
         this.gameRunning = false;
-        this.scoreSaved = false;
         this.gameLoopRunning = false;
         this.highScore = 0;
-        this.userName = "";
-
     }
 
 
